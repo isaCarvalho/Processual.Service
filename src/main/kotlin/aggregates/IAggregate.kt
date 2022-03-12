@@ -1,0 +1,4 @@
+package aggregates
+
+interface IAggregate {
+}

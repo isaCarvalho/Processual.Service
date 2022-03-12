@@ -1,0 +1,3 @@
+package commandhandlers
+
+interface ICommandHandler

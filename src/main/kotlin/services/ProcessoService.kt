@@ -1,0 +1,16 @@
+package services
+
+import models.write.ProcessoWriteModel
+import repositories.ProcessoRepository
+import java.util.UUID
+
+class ProcessoService(private val repository: ProcessoRepository) {
+
+    suspend fun create(model: ProcessoWriteModel) {
+        repository.create(model)
+    }
+
+    suspend fun delete(id: UUID) {
+        repository.delete(id)
+    }
+}
