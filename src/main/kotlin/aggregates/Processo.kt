@@ -1,7 +1,6 @@
 package aggregates
 
-import entities.Prazo
-import valueobjects.OAB
+import entities.Advogado
 import valueobjects.Rito
 import java.util.UUID
 
@@ -9,8 +8,7 @@ data class Processo(
     val id: UUID,
     val numero: Int,
     val rito: Rito,
-    val partes: MutableList<String>,
-    val advogados: MutableMap<OAB, String>,
+    val partes: List<String>,
     val instancia: Int,
-    val prazo: Prazo
+    val advogados: List<Advogado>
 ) : IAggregate

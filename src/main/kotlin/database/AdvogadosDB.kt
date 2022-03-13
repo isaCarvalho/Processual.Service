@@ -4,7 +4,8 @@ import org.jetbrains.exposed.sql.*
 import java.util.*
 
 object AdvogadosDB : Table() {
-    val nome = varchar("nome", length = 255).primaryKey()
-    val oab = integer("oab").primaryKey()
-    val processoId: Column<UUID> = uuid("processoId").primaryKey()
+    val id : Column<UUID> = uuid("id").primaryKey().uniqueIndex()
+    val nome = varchar("nome", length = 255)
+    val oab = integer("oab")
+    val processoId: Column<UUID> = uuid("processoId").references(ProcessosDB.id, onDelete = ReferenceOption.CASCADE)
 }

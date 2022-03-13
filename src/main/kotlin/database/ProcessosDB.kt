@@ -11,5 +11,5 @@ object ProcessosDB : Table() {
     val vara = varchar("vara", length = 255)
     val competenciaId: Column<UUID> = uuid("competenciaId")
     val instancia = integer("instancia")
-    val createdAt = date("createdAt")
+    val createdAt = varchar("createdAt", length = 255)
 }

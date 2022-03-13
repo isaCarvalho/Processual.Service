@@ -6,5 +6,5 @@ import java.util.*
 
 data class ProcessoWriteModel (
     val processo: Processo,
-    val createdAt: DateTime
+    val createdAt: String
 ) : IWriteModel
