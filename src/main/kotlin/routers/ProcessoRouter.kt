@@ -1,6 +1,7 @@
 package routers
 
 import commandhandlers.ProcessoCommandHandler
+import commands.processo.AtualizarProcesso
 import commands.processo.CriarProcesso
 import commands.processo.DeletarProcesso
 import io.ktor.application.*
@@ -8,7 +9,6 @@ import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import queries.AdvogadoQuery
 import queries.ProcessoQuery
 import java.util.*
 
@@ -20,6 +20,15 @@ fun Route.processoRouter(handler: ProcessoCommandHandler, query: ProcessoQuery) 
 
                 handler.handle(cmd)
                 call.response.status(HttpStatusCode.Created)
+            }
+        }
+
+        put {
+            with(call) {
+                val cmd = receive<AtualizarProcesso>()
+
+                handler.handle(cmd)
+                call.response.status(HttpStatusCode.OK)
             }
         }
 
