@@ -1,22 +1,22 @@
 package queries
 
-import aggregates.Processo
 import database.ProcessosDB
+import models.read.processo.ProcessoReadModel
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.*
 
 interface IProcessoQuery {
-    suspend fun get(id: UUID): Processo?
+    suspend fun get(id: UUID): ProcessoReadModel?
 
-    suspend fun getBatch(ids: List<UUID>) : List<Processo>
+    suspend fun getBatch(ids: List<UUID>) : List<ProcessoReadModel>
 
-    suspend fun getAll() : List<Processo>
+    suspend fun getAll() : List<ProcessoReadModel>
 }
 
 class ProcessoQuery : IProcessoQuery {
 
-    override suspend fun get(id: UUID) : Processo? {
+    override suspend fun get(id: UUID) : ProcessoReadModel? {
         val row = transaction {
             ProcessosDB.select {
                 addLogger(StdOutSqlLogger)
@@ -24,10 +24,10 @@ class ProcessoQuery : IProcessoQuery {
             }.firstOrNull()
         }
 
-        return row?.asProcesso()
+        return row?.asProcessoReadModel()
     }
 
-    override suspend fun getBatch(ids: List<UUID>): List<Processo> {
+    override suspend fun getBatch(ids: List<UUID>): List<ProcessoReadModel> {
 
         val rows = transaction {
             ProcessosDB.select {
@@ -36,25 +36,21 @@ class ProcessoQuery : IProcessoQuery {
             }
         }
 
-        return rows.map { it.asProcesso() }
+        return rows.map { it.asProcessoReadModel() }
     }
 
-    override suspend fun getAll(): List<Processo> {
+    override suspend fun getAll(): List<ProcessoReadModel> {
 
         val rows = transaction {
             ProcessosDB.selectAll()
         }
 
-        return rows.map { it.asProcesso() }
+        return rows.map { it.asProcessoReadModel() }
     }
 }
 
-private fun ResultRow.asProcesso() = Processo(
+private fun ResultRow.asProcessoReadModel() = ProcessoReadModel(
     this[ProcessosDB.id],
     this[ProcessosDB.numero],
-    null,
-    this[ProcessosDB.partes].split(";").toList(),
-    null,
-    null,
-    null
+    this[ProcessosDB.partes].split(";").toList()
 )

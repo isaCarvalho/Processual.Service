@@ -2,22 +2,23 @@ package queries
 
 import database.AdvogadosDB
 import entities.Advogado
+import models.read.advogado.AdvogadoReadModel
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import valueobjects.OAB
 import java.util.*
 
 interface IAdvogadoQuery {
-    suspend fun get(id: UUID): Advogado?
+    suspend fun get(id: UUID): AdvogadoReadModel?
 
-    suspend fun getBatch(ids: List<UUID>) : List<Advogado>
+    suspend fun getBatch(ids: List<UUID>) : List<AdvogadoReadModel>
 
-    suspend fun getAll() : List<Advogado>
+    suspend fun getAll() : List<AdvogadoReadModel>
 }
 
 class AdvogadoQuery : IAdvogadoQuery {
 
-    override suspend fun get(id: UUID) : Advogado? {
+    override suspend fun get(id: UUID) : AdvogadoReadModel? {
         val row = transaction {
             AdvogadosDB.select {
                 addLogger(StdOutSqlLogger)
@@ -25,10 +26,10 @@ class AdvogadoQuery : IAdvogadoQuery {
             }.firstOrNull()
         }
 
-        return row?.asAdvogado()
+        return row?.asAdvogadoReadModel()
     }
 
-    override suspend fun getBatch(ids: List<UUID>): List<Advogado> {
+    override suspend fun getBatch(ids: List<UUID>): List<AdvogadoReadModel> {
 
         val rows = transaction {
             AdvogadosDB.select {
@@ -37,21 +38,21 @@ class AdvogadoQuery : IAdvogadoQuery {
             }
         }
 
-        return rows.map { it.asAdvogado() }
+        return rows.map { it.asAdvogadoReadModel() }
     }
 
-    override suspend fun getAll(): List<Advogado> {
+    override suspend fun getAll(): List<AdvogadoReadModel> {
 
         val rows = transaction {
             AdvogadosDB.selectAll()
         }
 
-        return rows.map { it.asAdvogado() }
+        return rows.map { it.asAdvogadoReadModel() }
     }
 }
 
 
-private fun ResultRow.asAdvogado() = Advogado(
+private fun ResultRow.asAdvogadoReadModel() = AdvogadoReadModel(
     this[AdvogadosDB.id],
     this[AdvogadosDB.nome],
     OAB(this[AdvogadosDB.oab])
