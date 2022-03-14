@@ -10,9 +10,10 @@ import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import queries.AdvogadoQuery
 import java.util.*
 
-fun Route.advogadoRouter(handler: AdvogadoCommandHandler) {
+fun Route.advogadoRouter(handler: AdvogadoCommandHandler, query: AdvogadoQuery) {
     route("/advogado") {
         post {
             with(call) {
@@ -53,7 +54,7 @@ fun Route.advogadoRouter(handler: AdvogadoCommandHandler) {
         get("/{id}") {
             with(call) {
                 val id = UUID.fromString(parameters["id"])
-                val adv = handler.handle(id)
+                val adv = query.get(id)
 
                 if (adv == null) {
                     respond(HttpStatusCode.NotFound)
@@ -66,7 +67,7 @@ fun Route.advogadoRouter(handler: AdvogadoCommandHandler) {
         get("/batch") {
             with(call) {
                 val ids = receive<List<UUID>>()
-                val advs = handler.handle(ids)
+                val advs = query.getBatch(ids)
 
                 respond(advs)
             }
@@ -74,7 +75,7 @@ fun Route.advogadoRouter(handler: AdvogadoCommandHandler) {
 
         get {
             with(call) {
-                respond(handler.handle())
+                respond(query.getAll())
             }
         }
     }

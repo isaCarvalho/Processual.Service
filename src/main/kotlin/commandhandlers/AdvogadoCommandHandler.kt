@@ -13,7 +13,7 @@ import java.util.UUID
 
 class AdvogadoCommandHandler : ICommandHandler {
 
-    private val service = AdvogadoService(AdvogadoRepository(), AdvogadoQuery())
+    private val service = AdvogadoService(AdvogadoRepository())
 
     suspend fun handle(cmd: CriarAdvogado) {
         service.create(cmd.advogado)
@@ -30,10 +30,4 @@ class AdvogadoCommandHandler : ICommandHandler {
     suspend fun handle(cmd: AdicionarAdvogadosAoProcesso) {
         service.addAdvogadoProcesso(cmd.model)
     }
-
-    suspend fun handle(id: UUID) = service.get(id)
-
-    suspend fun handle(ids: List<UUID>) = service.getBatch(ids)
-
-    suspend fun handle() = service.getAll()
 }
