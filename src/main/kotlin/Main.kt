@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
+import commandhandlers.AdvogadoCommandHandler
 import commandhandlers.ProcessoCommandHandler
 import database.DB
 import io.ktor.application.*
@@ -13,6 +14,7 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.Date
 import database.*
+import routers.advogadoRouter
 import routers.processoRouter
 
 fun main() {
@@ -32,6 +34,7 @@ fun Application.mainModule() {
             ProcessosDB,
             PrazoDB,
             AdvogadosDB,
+            AdvogadosProcessosDB
         )
     }
 
@@ -51,6 +54,7 @@ fun Application.mainModule() {
         }
 
         processoRouter(ProcessoCommandHandler())
+        advogadoRouter(AdvogadoCommandHandler())
     }
 }
 

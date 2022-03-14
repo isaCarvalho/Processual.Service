@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class writemodel.AdvogadoTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class writemodel.AdvogadoTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/writemodel.html">writemodel</a> &gt; AdvogadoTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">3</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">1.655s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">create</td>
+<td class="success">1.394s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">delete</td>
+<td class="success">0.138s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">update</td>
+<td class="success">0.123s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>09:41:22.090 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS prazodb
+09:41:22.096 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosprocessosdb
+09:41:22.099 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosdb
+09:41:22.215 [Test worker] INFO ktor.test - Autoreload is disabled because the development mode is off.
+09:41:22.230 [Test worker] INFO ktor.test - Application started in 0.052 seconds.
+09:41:22.373 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS prazodb (id uuid PRIMARY KEY, &quot;quantidadeEmDias&quot; INT NOT NULL, &quot;dueDate&quot; VARCHAR(255) NOT NULL, &quot;processoId&quot; uuid NOT NULL, &quot;createdAt&quot; VARCHAR(255) NOT NULL, CONSTRAINT fk_prazodb_processoid_id FOREIGN KEY (&quot;processoId&quot;) REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+09:41:22.384 [Test worker] DEBUG Exposed - ALTER TABLE prazodb ADD CONSTRAINT prazodb_id_unique UNIQUE (id)
+09:41:22.397 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosdb (id uuid PRIMARY KEY, nome VARCHAR(255) NOT NULL, oab INT NOT NULL, &quot;createdAt&quot; VARCHAR(255) NOT NULL)
+09:41:22.405 [Test worker] DEBUG Exposed - ALTER TABLE advogadosdb ADD CONSTRAINT advogadosdb_id_unique UNIQUE (id)
+09:41:22.407 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosprocessosdb (&quot;processoId&quot; uuid NOT NULL, &quot;advogadosId&quot; uuid NOT NULL, CONSTRAINT fk_advogadosprocessosdb_processoid_id FOREIGN KEY (&quot;processoId&quot;) REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT, CONSTRAINT fk_advogadosprocessosdb_advogadosid_id FOREIGN KEY (&quot;advogadosId&quot;) REFERENCES advogadosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+09:41:23.141 [DefaultDispatcher-worker-1 @request#1] DEBUG Exposed - INSERT INTO advogadosdb (&quot;createdAt&quot;, id, nome, oab) VALUES ('2022-03-14T09:41:23.102-03:00', '0dcaaa03-bde4-4488-8b66-02129c1cdfad', 'Adv 1', 12)
+09:41:23.185 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS prazodb
+09:41:23.187 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosprocessosdb
+09:41:23.188 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosdb
+09:41:23.195 [Test worker] INFO ktor.test - Autoreload is disabled because the development mode is off.
+09:41:23.195 [Test worker] INFO ktor.test - Application started in 0.001 seconds.
+09:41:23.229 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS prazodb (id uuid PRIMARY KEY, &quot;quantidadeEmDias&quot; INT NOT NULL, &quot;dueDate&quot; VARCHAR(255) NOT NULL, &quot;processoId&quot; uuid NOT NULL, &quot;createdAt&quot; VARCHAR(255) NOT NULL, CONSTRAINT fk_prazodb_processoid_id FOREIGN KEY (&quot;processoId&quot;) REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+09:41:23.235 [Test worker] DEBUG Exposed - ALTER TABLE prazodb ADD CONSTRAINT prazodb_id_unique UNIQUE (id)
+09:41:23.244 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosdb (id uuid PRIMARY KEY, nome VARCHAR(255) NOT NULL, oab INT NOT NULL, &quot;createdAt&quot; VARCHAR(255) NOT NULL)
+09:41:23.253 [Test worker] DEBUG Exposed - ALTER TABLE advogadosdb ADD CONSTRAINT advogadosdb_id_unique UNIQUE (id)
+09:41:23.257 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosprocessosdb (&quot;processoId&quot; uuid NOT NULL, &quot;advogadosId&quot; uuid NOT NULL, CONSTRAINT fk_advogadosprocessosdb_processoid_id FOREIGN KEY (&quot;processoId&quot;) REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT, CONSTRAINT fk_advogadosprocessosdb_advogadosid_id FOREIGN KEY (&quot;advogadosId&quot;) REFERENCES advogadosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+09:41:23.277 [DefaultDispatcher-worker-1 @request#3] DEBUG Exposed - INSERT INTO advogadosdb (&quot;createdAt&quot;, id, nome, oab) VALUES ('2022-03-14T09:41:23.267-03:00', '06dfc241-cbc4-4560-bb24-107be7c63a39', 'Adv 1', 12)
+09:41:23.302 [DefaultDispatcher-worker-1 @request#5] DEBUG Exposed - DELETE FROM advogadosdb WHERE advogadosdb.id = '06dfc241-cbc4-4560-bb24-107be7c63a39'
+09:41:23.323 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS prazodb
+09:41:23.325 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosprocessosdb
+09:41:23.326 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosdb
+09:41:23.331 [Test worker] INFO ktor.test - Autoreload is disabled because the development mode is off.
+09:41:23.331 [Test worker] INFO ktor.test - Application started in 0.0 seconds.
+09:41:23.359 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS prazodb (id uuid PRIMARY KEY, &quot;quantidadeEmDias&quot; INT NOT NULL, &quot;dueDate&quot; VARCHAR(255) NOT NULL, &quot;processoId&quot; uuid NOT NULL, &quot;createdAt&quot; VARCHAR(255) NOT NULL, CONSTRAINT fk_prazodb_processoid_id FOREIGN KEY (&quot;processoId&quot;) REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+09:41:23.368 [Test worker] DEBUG Exposed - ALTER TABLE prazodb ADD CONSTRAINT prazodb_id_unique UNIQUE (id)
+09:41:23.378 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosdb (id uuid PRIMARY KEY, nome VARCHAR(255) NOT NULL, oab INT NOT NULL, &quot;createdAt&quot; VARCHAR(255) NOT NULL)
+09:41:23.384 [Test worker] DEBUG Exposed - ALTER TABLE advogadosdb ADD CONSTRAINT advogadosdb_id_unique UNIQUE (id)
+09:41:23.385 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosprocessosdb (&quot;processoId&quot; uuid NOT NULL, &quot;advogadosId&quot; uuid NOT NULL, CONSTRAINT fk_advogadosprocessosdb_processoid_id FOREIGN KEY (&quot;processoId&quot;) REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT, CONSTRAINT fk_advogadosprocessosdb_advogadosid_id FOREIGN KEY (&quot;advogadosId&quot;) REFERENCES advogadosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+09:41:23.404 [DefaultDispatcher-worker-1 @request#7] DEBUG Exposed - INSERT INTO advogadosdb (&quot;createdAt&quot;, id, nome, oab) VALUES ('2022-03-14T09:41:23.394-03:00', '6fc12f2c-1867-4d66-b15b-2b2c0f893cfb', 'Adv 1', 12)
+09:41:23.427 [DefaultDispatcher-worker-1 @request#9] DEBUG Exposed - UPDATE advogadosdb SET nome='Adv 1', oab=12, &quot;createdAt&quot;='2022-03-14T09:41:23.414-03:00' WHERE advogadosdb.id = '6fc12f2c-1867-4d66-b15b-2b2c0f893cfb'
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.1</a> at Mar 14, 2022, 9:41:23 AM</p>
+</div>
+</div>
+</body>
+</html>

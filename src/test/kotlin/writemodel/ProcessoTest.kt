@@ -2,13 +2,11 @@ package writemodel
 
 import aggregates.Processo
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import commands.CriarProcesso
-import commands.DeletarProcesso
-import database.AdvogadosDB
-import database.DB
-import database.PrazoDB
-import database.ProcessosDB
+import commands.processo.CriarProcesso
+import commands.processo.DeletarProcesso
+import database.*
 import entities.Advogado
+import entities.Prazo
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.server.testing.*
@@ -32,7 +30,8 @@ class ProcessoTest {
         rito = Rito("Cabo Frio/RJ", "3 vara civel", UUID.randomUUID()),
         partes = mutableListOf("Pt 1", "Pt 2"),
         advogados = mutableListOf(Advogado(UUID.randomUUID(), "Adv 1", OAB(12))),
-        instancia = 1
+        instancia = 1,
+        prazo = Prazo(UUID.randomUUID(), 1, DateTime().toString())
     )
 
     @Test
@@ -71,6 +70,7 @@ class ProcessoTest {
         DB.connect()
         transaction {
             SchemaUtils.drop(
+                AdvogadosProcessosDB,
                 ProcessosDB,
                 PrazoDB,
                 AdvogadosDB,

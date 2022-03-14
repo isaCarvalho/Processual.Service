@@ -1,8 +1,8 @@
 package routers
 
 import commandhandlers.ProcessoCommandHandler
-import commands.CriarProcesso
-import commands.DeletarProcesso
+import commands.processo.CriarProcesso
+import commands.processo.DeletarProcesso
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.request.*

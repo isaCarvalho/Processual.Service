@@ -1,8 +1,7 @@
-package models.write
+package models.write.processo
 
 import aggregates.Processo
-import org.joda.time.DateTime
-import java.util.*
+import models.write.IWriteModel
 
 data class ProcessoWriteModel (
     val processo: Processo,

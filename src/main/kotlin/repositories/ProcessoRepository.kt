@@ -1,7 +1,7 @@
 package repositories
 
 import database.ProcessosDB
-import models.write.ProcessoWriteModel
+import models.write.processo.ProcessoWriteModel
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction

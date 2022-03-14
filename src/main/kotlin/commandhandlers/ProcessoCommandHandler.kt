@@ -1,8 +1,8 @@
 package commandhandlers
 
-import commands.CriarProcesso
-import commands.DeletarProcesso
-import models.write.ProcessoWriteModel
+import commands.processo.CriarProcesso
+import commands.processo.DeletarProcesso
+import models.write.processo.ProcessoWriteModel
 import repositories.ProcessoRepository
 import services.ProcessoService
 

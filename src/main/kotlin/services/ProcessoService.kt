@@ -1,6 +1,6 @@
 package services
 
-import models.write.ProcessoWriteModel
+import models.write.processo.ProcessoWriteModel
 import repositories.ProcessoRepository
 import java.util.UUID
 
