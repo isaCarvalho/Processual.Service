@@ -17,10 +17,6 @@ interface IAdvogadoRepository : IRepository {
 
     suspend fun update(model: AdvogadoWriteModel)
 
-    suspend fun get(id: UUID): Advogado?
-
-    suspend fun getBatch(ids: List<UUID>) : List<Advogado>
-
     suspend fun addAdvogadoProcesso(model: AdicionarAdvogadosWriteModel)
 }
 
@@ -56,29 +52,6 @@ class AdvogadoRepository : IAdvogadoRepository {
         }
     }
 
-    override suspend fun get(id: UUID) : Advogado? {
-        val row = transaction {
-            AdvogadosDB.select {
-                addLogger(StdOutSqlLogger)
-                AdvogadosDB.id eq id
-            }.firstOrNull()
-        }
-
-        return row?.asAdvogado()
-    }
-
-    override suspend fun getBatch(ids: List<UUID>): List<Advogado> {
-
-        val rows = transaction {
-            AdvogadosDB.select {
-                addLogger(StdOutSqlLogger)
-                AdvogadosDB.id inList ids
-            }
-        }
-
-        return rows.map { it.asAdvogado() }
-    }
-
     override suspend fun addAdvogadoProcesso(model: AdicionarAdvogadosWriteModel) {
         transaction {
             model.advogados.forEach { adv ->
@@ -90,9 +63,3 @@ class AdvogadoRepository : IAdvogadoRepository {
         }
     }
 }
-
-private fun ResultRow.asAdvogado() = Advogado(
-    this[AdvogadosDB.id],
-    this[AdvogadosDB.nome],
-    OAB(this[AdvogadosDB.oab])
-)

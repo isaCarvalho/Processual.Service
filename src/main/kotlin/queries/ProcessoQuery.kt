@@ -1,0 +1,4 @@
+package queries
+
+class ProcessoQuery {
+}
