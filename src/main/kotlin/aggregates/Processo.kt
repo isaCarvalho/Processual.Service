@@ -8,9 +8,9 @@ import java.util.UUID
 data class Processo(
     val id: UUID,
     val numero: Int,
-    val rito: Rito,
+    val rito: Rito?,
     val partes: List<String>,
-    val instancia: Int,
-    val advogados: List<Advogado>,
-    val prazo: Prazo
+    val instancia: Int?,
+    val advogados: List<Advogado>?,
+    val prazo: Prazo?
 ) : IAggregate

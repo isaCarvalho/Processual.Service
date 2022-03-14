@@ -6,9 +6,13 @@ import commands.processo.DeletarProcesso
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.request.*
+import io.ktor.response.*
 import io.ktor.routing.*
+import queries.AdvogadoQuery
+import queries.ProcessoQuery
+import java.util.*
 
-fun Route.processoRouter(handler: ProcessoCommandHandler) {
+fun Route.processoRouter(handler: ProcessoCommandHandler, query: ProcessoQuery) {
     route("/processo") {
         post {
             with(call) {
@@ -25,6 +29,34 @@ fun Route.processoRouter(handler: ProcessoCommandHandler) {
 
                 handler.handle(cmd)
                 call.response.status(HttpStatusCode.OK)
+            }
+        }
+
+        get("/{id}") {
+            with(call) {
+                val id = UUID.fromString(parameters["id"])
+                val adv = query.get(id)
+
+                if (adv == null) {
+                    respond(HttpStatusCode.NotFound)
+                } else {
+                    respond(adv)
+                }
+            }
+        }
+
+        get("/batch") {
+            with(call) {
+                val ids = receive<List<UUID>>()
+                val advs = query.getBatch(ids)
+
+                respond(advs)
+            }
+        }
+
+        get {
+            with(call) {
+                respond(query.getAll())
             }
         }
     }
