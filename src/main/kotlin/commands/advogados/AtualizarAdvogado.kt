@@ -1,8 +1,8 @@
 package commands.advogados
 
 import commands.ICommand
-import entities.Advogado
+import models.write.advogado.AdvogadoWriteModel
 
 data class AtualizarAdvogado(
-    val advogado: Advogado
+    val advogado: AdvogadoWriteModel
 ) : ICommand

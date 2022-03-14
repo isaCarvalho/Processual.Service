@@ -1,9 +1,8 @@
 package commands.processo
 
-import aggregates.Processo
 import commands.ICommand
+import models.write.processo.ProcessoWriteModel
 
 class CriarProcesso (
-    val processo: Processo,
-    val createdAt: String
+    val processo: ProcessoWriteModel
 ) : ICommand

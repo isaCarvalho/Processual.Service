@@ -13,8 +13,10 @@ import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.server.testing.*
 import mainModule
+import models.write.advogado.AdvogadoWriteModel
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.joda.time.DateTime
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -30,7 +32,12 @@ class AdvogadoTest {
     fun create() {
         withTestApplication(Application::mainModule) {
             // given
-            val cmd = CriarAdvogado(advogado)
+            val cmd = CriarAdvogado(AdvogadoWriteModel(
+                id = advogado.id,
+                nome = advogado.nome,
+                oab = advogado.oab,
+                createdAt = DateTime.now().toString()
+            ))
 
             // when
             val call = create(cmd, baseUri)
@@ -44,13 +51,23 @@ class AdvogadoTest {
     fun update() {
         withTestApplication(Application::mainModule) {
             // given
-            val cmd = CriarAdvogado(advogado)
+            val cmd = CriarAdvogado(AdvogadoWriteModel(
+                id = advogado.id,
+                nome = advogado.nome,
+                oab = advogado.oab,
+                createdAt = DateTime.now().toString()
+            ))
             val call = create(cmd, baseUri)
 
             Assert.assertEquals(call.response.status(), HttpStatusCode.Created)
 
             // when
-            val cmdAtualizar = AtualizarAdvogado(advogado)
+            val cmdAtualizar = AtualizarAdvogado(AdvogadoWriteModel(
+                id = advogado.id,
+                nome = advogado.nome,
+                oab = advogado.oab,
+                createdAt = DateTime.now().toString()
+            ))
             val updateCall = update(cmdAtualizar, baseUri)
 
             // then
@@ -62,7 +79,12 @@ class AdvogadoTest {
     fun delete() {
         withTestApplication(Application::mainModule) {
             // given
-            val cmd = CriarAdvogado(advogado)
+            val cmd = CriarAdvogado(AdvogadoWriteModel(
+                id = advogado.id,
+                nome = advogado.nome,
+                oab = advogado.oab,
+                createdAt = DateTime.now().toString()
+            ))
             val call = create(cmd, baseUri)
 
             Assert.assertEquals(call.response.status(), HttpStatusCode.Created)

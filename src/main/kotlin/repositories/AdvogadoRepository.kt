@@ -26,9 +26,9 @@ class AdvogadoRepository : IAdvogadoRepository {
 
         transaction {
             AdvogadosDB.insert {
-                it[AdvogadosDB.id] = model.advogado.id
-                it[AdvogadosDB.nome] = model.advogado.nome
-                it[AdvogadosDB.oab] = model.advogado.oab.numero
+                it[AdvogadosDB.id] = model.id
+                it[AdvogadosDB.nome] = model.nome
+                it[AdvogadosDB.oab] = model.oab.numero
                 it[AdvogadosDB.createdAt] = model.createdAt
             }
         }
@@ -44,9 +44,9 @@ class AdvogadoRepository : IAdvogadoRepository {
 
     override suspend fun update(model: AdvogadoWriteModel) {
         transaction {
-            AdvogadosDB.update({ AdvogadosDB.id eq model.advogado.id }) {
-                it[AdvogadosDB.nome] = model.advogado.nome
-                it[AdvogadosDB.oab] = model.advogado.oab.numero
+            AdvogadosDB.update({ AdvogadosDB.id eq model.id }) {
+                it[AdvogadosDB.nome] = model.nome
+                it[AdvogadosDB.oab] = model.oab.numero
                 it[AdvogadosDB.createdAt] = model.createdAt
             }
         }

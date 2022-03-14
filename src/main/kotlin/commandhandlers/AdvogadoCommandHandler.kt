@@ -13,13 +13,11 @@ class AdvogadoCommandHandler : ICommandHandler {
     private val service = AdvogadoService(AdvogadoRepository())
 
     suspend fun handle(cmd: CriarAdvogado) {
-        val model = AdvogadoWriteModel(cmd.advogado, DateTime.now().toString())
-        service.create(model)
+        service.create(cmd.advogado)
     }
 
     suspend fun handle(cmd: AtualizarAdvogado) {
-        val model = AdvogadoWriteModel(cmd.advogado, DateTime.now().toString())
-        service.update(model)
+        service.update(cmd.advogado)
     }
 
     suspend fun handle(cmd: DeletarAdvogado) {

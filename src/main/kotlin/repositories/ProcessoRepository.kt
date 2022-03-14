@@ -1,5 +1,6 @@
 package repositories
 
+import aggregates.Processo
 import database.ProcessosDB
 import models.write.processo.ProcessoWriteModel
 import org.jetbrains.exposed.sql.deleteWhere
@@ -18,13 +19,10 @@ class ProcessoRepository : IProcessoRepository {
     override suspend fun create(model: ProcessoWriteModel) {
         transaction {
             ProcessosDB.insert {
-                it[ProcessosDB.id] = model.processo.id
-                it[ProcessosDB.numero] = model.processo.numero
-                it[ProcessosDB.comarca] = model.processo.rito.comarca
-                it[ProcessosDB.vara] = model.processo.rito.vara
-                it[ProcessosDB.competenciaId] = model.processo.rito.competenciaId
-                it[ProcessosDB.instancia] = model.processo.instancia
+                it[ProcessosDB.id] = model.id
+                it[ProcessosDB.numero] = model.numero
                 it[ProcessosDB.createdAt] = model.createdAt
+                it[ProcessosDB.partes] = model.partes.joinToString(";")
             }
         }
     }

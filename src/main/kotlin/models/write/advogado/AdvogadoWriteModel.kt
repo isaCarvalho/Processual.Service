@@ -1,8 +1,11 @@
 package models.write.advogado
 
-import entities.Advogado
+import valueobjects.OAB
+import java.util.*
 
 data class AdvogadoWriteModel(
-    val advogado: Advogado,
+    val id: UUID,
+    val nome: String,
+    val oab: OAB,
     val createdAt: String
 )

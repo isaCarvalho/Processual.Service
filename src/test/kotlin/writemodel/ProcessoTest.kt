@@ -11,6 +11,7 @@ import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.server.testing.*
 import mainModule
+import models.write.processo.ProcessoWriteModel
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
@@ -38,7 +39,12 @@ class ProcessoTest {
     fun create() {
         withTestApplication(Application::mainModule) {
             // given
-            val cmd = CriarProcesso(processo, DateTime().toString())
+            val cmd = CriarProcesso(ProcessoWriteModel(
+                id = processo.id,
+                numero = processo.numero,
+                partes = processo.partes,
+                createdAt = DateTime.now().toString()
+            ))
 
             // when
             val call = create(cmd, baseUri)
@@ -52,7 +58,12 @@ class ProcessoTest {
     fun delete() {
         withTestApplication(Application::mainModule) {
             // given
-            val cmd = CriarProcesso(processo, DateTime().toString())
+            val cmd = CriarProcesso(ProcessoWriteModel(
+                id = processo.id,
+                numero = processo.numero,
+                partes = processo.partes,
+                createdAt = DateTime.now().toString()
+            ))
             val call = create(cmd, baseUri)
 
             Assert.assertEquals(call.response.status(), HttpStatusCode.Created)
