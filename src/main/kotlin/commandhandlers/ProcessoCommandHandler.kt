@@ -3,8 +3,6 @@ package commandhandlers
 import commands.processo.AtualizarProcesso
 import commands.processo.CriarProcesso
 import commands.processo.DeletarProcesso
-import models.write.processo.ProcessoWriteModel
-import org.joda.time.DateTime
 import repositories.ProcessoRepository
 import services.ProcessoService
 

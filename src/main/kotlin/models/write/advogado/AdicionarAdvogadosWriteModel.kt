@@ -1,6 +1,5 @@
 package models.write.advogado
 
-import entities.Advogado
 import java.util.UUID
 
 data class AdicionarAdvogadosWriteModel(

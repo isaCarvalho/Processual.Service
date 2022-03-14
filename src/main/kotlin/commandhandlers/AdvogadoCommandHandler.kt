@@ -4,12 +4,8 @@ import commands.advogados.AdicionarAdvogadosAoProcesso
 import commands.advogados.AtualizarAdvogado
 import commands.advogados.CriarAdvogado
 import commands.advogados.DeletarAdvogado
-import models.write.advogado.AdvogadoWriteModel
-import org.joda.time.DateTime
-import queries.AdvogadoQuery
 import repositories.AdvogadoRepository
 import services.AdvogadoService
-import java.util.UUID
 
 class AdvogadoCommandHandler : ICommandHandler {
 

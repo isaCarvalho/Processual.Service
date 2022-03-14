@@ -1,7 +1,6 @@
 package queries
 
 import database.AdvogadosDB
-import entities.Advogado
 import models.read.advogado.AdvogadoReadModel
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction

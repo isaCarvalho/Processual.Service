@@ -1,4 +1,3 @@
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import commandhandlers.AdvogadoCommandHandler
 import commandhandlers.ProcessoCommandHandler
@@ -14,6 +13,8 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.Date
 import database.*
+import queries.AdvogadoQuery
+import queries.ProcessoQuery
 import routers.advogadoRouter
 import routers.processoRouter
 
@@ -53,9 +54,7 @@ fun Application.mainModule() {
             context.respond(mapOf(Pair(Date(), "Bem-vindo ao Servico Processual.")))
         }
 
-        processoRouter(ProcessoCommandHandler())
-        advogadoRouter(AdvogadoCommandHandler())
+        processoRouter(ProcessoCommandHandler(), ProcessoQuery())
+        advogadoRouter(AdvogadoCommandHandler(), AdvogadoQuery())
     }
 }
-
-fun String.asJson() = ObjectMapper().readTree(this)

@@ -2,12 +2,10 @@ package repositories
 
 import database.AdvogadosDB
 import database.AdvogadosProcessosDB
-import entities.Advogado
 import models.write.advogado.AdicionarAdvogadosWriteModel
 import models.write.advogado.AdvogadoWriteModel
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
-import valueobjects.OAB
 import java.util.UUID
 
 interface IAdvogadoRepository : IRepository {
