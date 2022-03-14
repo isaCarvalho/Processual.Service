@@ -1,6 +1,5 @@
 package database
 
-import database.AdvogadosDB.references
 import org.jetbrains.exposed.sql.*
 import java.util.*
 

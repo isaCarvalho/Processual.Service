@@ -1,7 +1,9 @@
 package repositories
 
 import database.AdvogadosDB
+import database.AdvogadosProcessosDB
 import entities.Advogado
+import models.write.advogado.AdicionarAdvogadosWriteModel
 import models.write.advogado.AdvogadoWriteModel
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -18,6 +20,8 @@ interface IAdvogadoRepository : IRepository {
     suspend fun get(id: UUID): Advogado?
 
     suspend fun getBatch(ids: List<UUID>) : List<Advogado>
+
+    suspend fun addAdvogadoProcesso(model: AdicionarAdvogadosWriteModel)
 }
 
 class AdvogadoRepository : IAdvogadoRepository {
@@ -26,10 +30,10 @@ class AdvogadoRepository : IAdvogadoRepository {
 
         transaction {
             AdvogadosDB.insert {
-                it[AdvogadosDB.id] = model.id
-                it[AdvogadosDB.nome] = model.nome
-                it[AdvogadosDB.oab] = model.oab.numero
-                it[AdvogadosDB.createdAt] = model.createdAt
+                it[id] = model.id
+                it[nome] = model.nome
+                it[oab] = model.oab.numero
+                it[createdAt] = model.createdAt
             }
         }
     }
@@ -45,9 +49,9 @@ class AdvogadoRepository : IAdvogadoRepository {
     override suspend fun update(model: AdvogadoWriteModel) {
         transaction {
             AdvogadosDB.update({ AdvogadosDB.id eq model.id }) {
-                it[AdvogadosDB.nome] = model.nome
-                it[AdvogadosDB.oab] = model.oab.numero
-                it[AdvogadosDB.createdAt] = model.createdAt
+                it[nome] = model.nome
+                it[oab] = model.oab.numero
+                it[createdAt] = model.createdAt
             }
         }
     }
@@ -73,6 +77,17 @@ class AdvogadoRepository : IAdvogadoRepository {
         }
 
         return rows.map { it.asAdvogado() }
+    }
+
+    override suspend fun addAdvogadoProcesso(model: AdicionarAdvogadosWriteModel) {
+        transaction {
+            model.advogados.forEach { adv ->
+                AdvogadosProcessosDB.insert {
+                    it[processoId] = model.processoId
+                    it[advogadosId] = adv
+                }
+            }
+        }
     }
 }
 

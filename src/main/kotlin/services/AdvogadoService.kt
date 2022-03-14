@@ -1,6 +1,7 @@
 package services
 
 import entities.Advogado
+import models.write.advogado.AdicionarAdvogadosWriteModel
 import models.write.advogado.AdvogadoWriteModel
 import repositories.AdvogadoRepository
 import java.util.*
@@ -22,4 +23,8 @@ class AdvogadoService(private val repository: AdvogadoRepository) {
     suspend fun get(id: UUID): Advogado? = repository.get(id)
 
     suspend fun getBatch(ids: List<UUID>) : List<Advogado> = repository.getBatch(ids)
+
+    suspend fun addAdvogadoProcesso(model: AdicionarAdvogadosWriteModel) {
+        repository.addAdvogadoProcesso(model)
+    }
 }

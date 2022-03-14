@@ -1,6 +1,7 @@
 package routers
 
 import commandhandlers.AdvogadoCommandHandler
+import commands.advogados.AdicionarAdvogadosAoProcesso
 import commands.advogados.AtualizarAdvogado
 import commands.advogados.CriarAdvogado
 import commands.advogados.DeletarAdvogado
@@ -23,6 +24,15 @@ fun Route.advogadoRouter(handler: AdvogadoCommandHandler) {
         put {
             with(call) {
                 val cmd = receive<AtualizarAdvogado>()
+
+                handler.handle(cmd)
+                call.response.status(HttpStatusCode.OK)
+            }
+        }
+
+        put("/adicionarAoProcesso") {
+            with(call) {
+                val cmd = receive<AdicionarAdvogadosAoProcesso>()
 
                 handler.handle(cmd)
                 call.response.status(HttpStatusCode.OK)

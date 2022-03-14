@@ -1,44 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="writemodel.AdvogadoTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-03-14T12:54:39" hostname="FUS-9QQN1J3" time="1.418">
+<testsuite name="writemodel.AdvogadoTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-03-14T13:19:58" hostname="FUS-9QQN1J3" time="1.372">
   <properties/>
-  <testcase name="create" classname="writemodel.AdvogadoTest" time="1.195"/>
-  <testcase name="delete" classname="writemodel.AdvogadoTest" time="0.107"/>
-  <testcase name="update" classname="writemodel.AdvogadoTest" time="0.114"/>
-  <system-out><![CDATA[09:54:39.433 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS prazodb
-09:54:39.439 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosprocessosdb
-09:54:39.441 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosdb
-09:54:39.557 [Test worker] INFO ktor.test - Autoreload is disabled because the development mode is off.
-09:54:39.583 [Test worker] INFO ktor.test - Application started in 0.074 seconds.
-09:54:39.618 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS prazodb (id uuid PRIMARY KEY, "quantidadeEmDias" INT NOT NULL, "dueDate" VARCHAR(255) NOT NULL, "processoId" uuid NOT NULL, "createdAt" VARCHAR(255) NOT NULL, CONSTRAINT fk_prazodb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
-09:54:39.623 [Test worker] DEBUG Exposed - ALTER TABLE prazodb ADD CONSTRAINT prazodb_id_unique UNIQUE (id)
-09:54:39.632 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosdb (id uuid PRIMARY KEY, nome VARCHAR(255) NOT NULL, oab INT NOT NULL, "createdAt" VARCHAR(255) NOT NULL)
-09:54:39.636 [Test worker] DEBUG Exposed - ALTER TABLE advogadosdb ADD CONSTRAINT advogadosdb_id_unique UNIQUE (id)
-09:54:39.638 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosprocessosdb ("processoId" uuid NOT NULL, "advogadosId" uuid NOT NULL, CONSTRAINT fk_advogadosprocessosdb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT, CONSTRAINT fk_advogadosprocessosdb_advogadosid_id FOREIGN KEY ("advogadosId") REFERENCES advogadosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
-09:54:40.297 [DefaultDispatcher-worker-1 @request#1] DEBUG Exposed - INSERT INTO advogadosdb ("createdAt", id, nome, oab) VALUES ('2022-03-14T09:54:39.791-03:00', '11432d75-02e8-4a42-87d1-5dc0f2c1409e', 'Adv 1', 12)
-09:54:40.339 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS prazodb
-09:54:40.340 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosprocessosdb
-09:54:40.341 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosdb
-09:54:40.346 [Test worker] INFO ktor.test - Autoreload is disabled because the development mode is off.
-09:54:40.346 [Test worker] INFO ktor.test - Application started in 0.001 seconds.
-09:54:40.369 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS prazodb (id uuid PRIMARY KEY, "quantidadeEmDias" INT NOT NULL, "dueDate" VARCHAR(255) NOT NULL, "processoId" uuid NOT NULL, "createdAt" VARCHAR(255) NOT NULL, CONSTRAINT fk_prazodb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
-09:54:40.374 [Test worker] DEBUG Exposed - ALTER TABLE prazodb ADD CONSTRAINT prazodb_id_unique UNIQUE (id)
-09:54:40.382 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosdb (id uuid PRIMARY KEY, nome VARCHAR(255) NOT NULL, oab INT NOT NULL, "createdAt" VARCHAR(255) NOT NULL)
-09:54:40.386 [Test worker] DEBUG Exposed - ALTER TABLE advogadosdb ADD CONSTRAINT advogadosdb_id_unique UNIQUE (id)
-09:54:40.388 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosprocessosdb ("processoId" uuid NOT NULL, "advogadosId" uuid NOT NULL, CONSTRAINT fk_advogadosprocessosdb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT, CONSTRAINT fk_advogadosprocessosdb_advogadosid_id FOREIGN KEY ("advogadosId") REFERENCES advogadosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
-09:54:40.406 [DefaultDispatcher-worker-1 @request#3] DEBUG Exposed - INSERT INTO advogadosdb ("createdAt", id, nome, oab) VALUES ('2022-03-14T09:54:40.391-03:00', 'ff66f645-6153-4671-90fa-4f2c2b696b6d', 'Adv 1', 12)
-09:54:40.428 [DefaultDispatcher-worker-1 @request#5] DEBUG Exposed - DELETE FROM advogadosdb WHERE advogadosdb.id = 'ff66f645-6153-4671-90fa-4f2c2b696b6d'
-09:54:40.447 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS prazodb
-09:54:40.448 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosprocessosdb
-09:54:40.450 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosdb
-09:54:40.455 [Test worker] INFO ktor.test - Autoreload is disabled because the development mode is off.
-09:54:40.455 [Test worker] INFO ktor.test - Application started in 0.0 seconds.
-09:54:40.482 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS prazodb (id uuid PRIMARY KEY, "quantidadeEmDias" INT NOT NULL, "dueDate" VARCHAR(255) NOT NULL, "processoId" uuid NOT NULL, "createdAt" VARCHAR(255) NOT NULL, CONSTRAINT fk_prazodb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
-09:54:40.487 [Test worker] DEBUG Exposed - ALTER TABLE prazodb ADD CONSTRAINT prazodb_id_unique UNIQUE (id)
-09:54:40.495 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosdb (id uuid PRIMARY KEY, nome VARCHAR(255) NOT NULL, oab INT NOT NULL, "createdAt" VARCHAR(255) NOT NULL)
-09:54:40.500 [Test worker] DEBUG Exposed - ALTER TABLE advogadosdb ADD CONSTRAINT advogadosdb_id_unique UNIQUE (id)
-09:54:40.501 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosprocessosdb ("processoId" uuid NOT NULL, "advogadosId" uuid NOT NULL, CONSTRAINT fk_advogadosprocessosdb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT, CONSTRAINT fk_advogadosprocessosdb_advogadosid_id FOREIGN KEY ("advogadosId") REFERENCES advogadosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
-09:54:40.520 [DefaultDispatcher-worker-1 @request#7] DEBUG Exposed - INSERT INTO advogadosdb ("createdAt", id, nome, oab) VALUES ('2022-03-14T09:54:40.504-03:00', '86384377-e74d-48a1-ab0e-b4bbde97f48b', 'Adv 1', 12)
-09:54:40.543 [DefaultDispatcher-worker-1 @request#9] DEBUG Exposed - UPDATE advogadosdb SET nome='Adv 1', oab=12, "createdAt"='2022-03-14T09:54:40.524-03:00' WHERE advogadosdb.id = '86384377-e74d-48a1-ab0e-b4bbde97f48b'
+  <testcase name="adicionarAoProcesso" classname="writemodel.AdvogadoTest" time="1.077"/>
+  <testcase name="create" classname="writemodel.AdvogadoTest" time="0.083"/>
+  <testcase name="delete" classname="writemodel.AdvogadoTest" time="0.103"/>
+  <testcase name="update" classname="writemodel.AdvogadoTest" time="0.108"/>
+  <system-out><![CDATA[10:19:58.510 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS prazodb
+10:19:58.516 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosprocessosdb
+10:19:58.517 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosdb
+10:19:58.606 [Test worker] INFO ktor.test - Autoreload is disabled because the development mode is off.
+10:19:58.620 [Test worker] INFO ktor.test - Application started in 0.054 seconds.
+10:19:58.657 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS prazodb (id uuid PRIMARY KEY, "quantidadeEmDias" INT NOT NULL, "dueDate" VARCHAR(255) NOT NULL, "processoId" uuid NOT NULL, "createdAt" VARCHAR(255) NOT NULL, CONSTRAINT fk_prazodb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+10:19:58.662 [Test worker] DEBUG Exposed - ALTER TABLE prazodb ADD CONSTRAINT prazodb_id_unique UNIQUE (id)
+10:19:58.671 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosdb (id uuid PRIMARY KEY, nome VARCHAR(255) NOT NULL, oab INT NOT NULL, "createdAt" VARCHAR(255) NOT NULL)
+10:19:58.676 [Test worker] DEBUG Exposed - ALTER TABLE advogadosdb ADD CONSTRAINT advogadosdb_id_unique UNIQUE (id)
+10:19:58.678 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosprocessosdb ("processoId" uuid NOT NULL, "advogadosId" uuid NOT NULL, CONSTRAINT fk_advogadosprocessosdb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT, CONSTRAINT fk_advogadosprocessosdb_advogadosid_id FOREIGN KEY ("advogadosId") REFERENCES advogadosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+10:19:59.255 [DefaultDispatcher-worker-2 @request#1] DEBUG Exposed - INSERT INTO advogadosdb ("createdAt", id, nome, oab) VALUES ('2022-03-14T10:19:58.821-03:00', 'a341e17b-ba90-4619-91f4-88a85ed38e5e', 'Adv 1', 12)
+10:19:59.303 [DefaultDispatcher-worker-2 @request#3] DEBUG Exposed - INSERT INTO processosdb (comarca, "competenciaId", "createdAt", id, instancia, numero, partes, vara) VALUES (NULL, NULL, '2022-03-14T10:19:59.276-03:00', 'e44f03dc-c891-4f56-beb6-b0354596da80', NULL, 1, 'p1', NULL)
+10:19:59.327 [DefaultDispatcher-worker-2 @request#5] DEBUG Exposed - INSERT INTO advogadosprocessosdb ("advogadosId", "processoId") VALUES ('a341e17b-ba90-4619-91f4-88a85ed38e5e', 'e44f03dc-c891-4f56-beb6-b0354596da80')
+10:19:59.348 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS prazodb
+10:19:59.349 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosprocessosdb
+10:19:59.350 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosdb
+10:19:59.355 [Test worker] INFO ktor.test - Autoreload is disabled because the development mode is off.
+10:19:59.355 [Test worker] INFO ktor.test - Application started in 0.001 seconds.
+10:19:59.379 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS prazodb (id uuid PRIMARY KEY, "quantidadeEmDias" INT NOT NULL, "dueDate" VARCHAR(255) NOT NULL, "processoId" uuid NOT NULL, "createdAt" VARCHAR(255) NOT NULL, CONSTRAINT fk_prazodb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+10:19:59.384 [Test worker] DEBUG Exposed - ALTER TABLE prazodb ADD CONSTRAINT prazodb_id_unique UNIQUE (id)
+10:19:59.392 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosdb (id uuid PRIMARY KEY, nome VARCHAR(255) NOT NULL, oab INT NOT NULL, "createdAt" VARCHAR(255) NOT NULL)
+10:19:59.397 [Test worker] DEBUG Exposed - ALTER TABLE advogadosdb ADD CONSTRAINT advogadosdb_id_unique UNIQUE (id)
+10:19:59.398 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosprocessosdb ("processoId" uuid NOT NULL, "advogadosId" uuid NOT NULL, CONSTRAINT fk_advogadosprocessosdb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT, CONSTRAINT fk_advogadosprocessosdb_advogadosid_id FOREIGN KEY ("advogadosId") REFERENCES advogadosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+10:19:59.414 [DefaultDispatcher-worker-2 @request#7] DEBUG Exposed - INSERT INTO advogadosdb ("createdAt", id, nome, oab) VALUES ('2022-03-14T10:19:59.401-03:00', '0b064652-1ea5-4c25-bc4c-9be9a1b8eac7', 'Adv 1', 12)
+10:19:59.430 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS prazodb
+10:19:59.431 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosprocessosdb
+10:19:59.432 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosdb
+10:19:59.437 [Test worker] INFO ktor.test - Autoreload is disabled because the development mode is off.
+10:19:59.437 [Test worker] INFO ktor.test - Application started in 0.0 seconds.
+10:19:59.460 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS prazodb (id uuid PRIMARY KEY, "quantidadeEmDias" INT NOT NULL, "dueDate" VARCHAR(255) NOT NULL, "processoId" uuid NOT NULL, "createdAt" VARCHAR(255) NOT NULL, CONSTRAINT fk_prazodb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+10:19:59.465 [Test worker] DEBUG Exposed - ALTER TABLE prazodb ADD CONSTRAINT prazodb_id_unique UNIQUE (id)
+10:19:59.474 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosdb (id uuid PRIMARY KEY, nome VARCHAR(255) NOT NULL, oab INT NOT NULL, "createdAt" VARCHAR(255) NOT NULL)
+10:19:59.478 [Test worker] DEBUG Exposed - ALTER TABLE advogadosdb ADD CONSTRAINT advogadosdb_id_unique UNIQUE (id)
+10:19:59.480 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosprocessosdb ("processoId" uuid NOT NULL, "advogadosId" uuid NOT NULL, CONSTRAINT fk_advogadosprocessosdb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT, CONSTRAINT fk_advogadosprocessosdb_advogadosid_id FOREIGN KEY ("advogadosId") REFERENCES advogadosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+10:19:59.496 [DefaultDispatcher-worker-2 @request#9] DEBUG Exposed - INSERT INTO advogadosdb ("createdAt", id, nome, oab) VALUES ('2022-03-14T10:19:59.483-03:00', 'f0a63d4a-8137-4a3b-9179-038d6b7da510', 'Adv 1', 12)
+10:19:59.517 [DefaultDispatcher-worker-2 @request#11] DEBUG Exposed - DELETE FROM advogadosdb WHERE advogadosdb.id = 'f0a63d4a-8137-4a3b-9179-038d6b7da510'
+10:19:59.535 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS prazodb
+10:19:59.537 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosprocessosdb
+10:19:59.538 [Test worker] DEBUG Exposed - DROP TABLE IF EXISTS advogadosdb
+10:19:59.543 [Test worker] INFO ktor.test - Autoreload is disabled because the development mode is off.
+10:19:59.543 [Test worker] INFO ktor.test - Application started in 0.001 seconds.
+10:19:59.566 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS prazodb (id uuid PRIMARY KEY, "quantidadeEmDias" INT NOT NULL, "dueDate" VARCHAR(255) NOT NULL, "processoId" uuid NOT NULL, "createdAt" VARCHAR(255) NOT NULL, CONSTRAINT fk_prazodb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+10:19:59.571 [Test worker] DEBUG Exposed - ALTER TABLE prazodb ADD CONSTRAINT prazodb_id_unique UNIQUE (id)
+10:19:59.580 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosdb (id uuid PRIMARY KEY, nome VARCHAR(255) NOT NULL, oab INT NOT NULL, "createdAt" VARCHAR(255) NOT NULL)
+10:19:59.585 [Test worker] DEBUG Exposed - ALTER TABLE advogadosdb ADD CONSTRAINT advogadosdb_id_unique UNIQUE (id)
+10:19:59.587 [Test worker] DEBUG Exposed - CREATE TABLE IF NOT EXISTS advogadosprocessosdb ("processoId" uuid NOT NULL, "advogadosId" uuid NOT NULL, CONSTRAINT fk_advogadosprocessosdb_processoid_id FOREIGN KEY ("processoId") REFERENCES processosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT, CONSTRAINT fk_advogadosprocessosdb_advogadosid_id FOREIGN KEY ("advogadosId") REFERENCES advogadosdb(id) ON DELETE CASCADE ON UPDATE RESTRICT)
+10:19:59.604 [DefaultDispatcher-worker-2 @request#13] DEBUG Exposed - INSERT INTO advogadosdb ("createdAt", id, nome, oab) VALUES ('2022-03-14T10:19:59.590-03:00', 'f5b003bf-21b5-444c-9d13-4568f5275015', 'Adv 1', 12)
+10:19:59.625 [DefaultDispatcher-worker-2 @request#15] DEBUG Exposed - UPDATE advogadosdb SET nome='Adv 1', oab=12, "createdAt"='2022-03-14T10:19:59.607-03:00' WHERE advogadosdb.id = 'f5b003bf-21b5-444c-9d13-4568f5275015'
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
