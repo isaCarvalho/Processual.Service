@@ -11,7 +11,7 @@ class ProcessoCommandHandler : ICommandHandler {
     private val service = ProcessoService(ProcessoRepository())
 
     suspend fun handle(cmd: CriarProcesso) {
-        service.create(cmd.processo)
+        service.create(cmd.model)
     }
 
     suspend fun handle(cmd: DeletarProcesso) {
@@ -19,6 +19,6 @@ class ProcessoCommandHandler : ICommandHandler {
     }
 
     suspend fun handle(cmd: AtualizarProcesso) {
-        service.update(cmd.processo)
+        service.update(cmd.model)
     }
 }

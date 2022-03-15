@@ -4,5 +4,5 @@ import commands.ICommand
 import models.write.advogado.AdvogadoWriteModel
 
 data class CriarAdvogado(
-    val advogado: AdvogadoWriteModel
+    val model: AdvogadoWriteModel
 ) : ICommand
