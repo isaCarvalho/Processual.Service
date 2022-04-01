@@ -11,6 +11,10 @@ object AdvogadosDB : Table() {
 }
 
 object AdvogadosProcessosDB: Table() {
-    val processoId: Column<UUID> = uuid("processoId").references(ProcessosDB.id, onDelete = ReferenceOption.CASCADE)
-    val advogadosId: Column<UUID> = uuid("advogadosId").references(AdvogadosDB.id, onDelete = ReferenceOption.CASCADE)
+    val processoId: Column<UUID> = uuid("processoId")
+        .references(ProcessosDB.id, onDelete = ReferenceOption.CASCADE, onUpdate = ReferenceOption.CASCADE)
+        .primaryKey()
+    val advogadosId: Column<UUID> = uuid("advogadosId")
+        .references(AdvogadosDB.id, onDelete = ReferenceOption.CASCADE, onUpdate = ReferenceOption.CASCADE)
+        .primaryKey()
 }

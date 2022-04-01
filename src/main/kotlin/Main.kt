@@ -53,8 +53,7 @@ fun Application.mainModule() {
 
     install(Authentication) {
         jwt("auth-jwt") {
-            verifier(
-                JWT
+            verifier(JWT
                 .require(Algorithm.HMAC256(secret))
                 .build()
             )

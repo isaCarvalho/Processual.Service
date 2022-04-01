@@ -9,6 +9,7 @@ import entities.Advogado
 import entities.Prazo
 import io.ktor.application.*
 import io.ktor.http.*
+import io.ktor.request.*
 import io.ktor.server.testing.*
 import mainModule
 import models.write.processo.ProcessoWriteModel
@@ -50,7 +51,7 @@ class ProcessoTest {
             val call = create(cmd, baseUri)
 
             // then
-            Assert.assertEquals(call.response.status(), HttpStatusCode.Created)
+            Assert.assertEquals(HttpStatusCode.Created, call.response.status())
         }
     }
 
@@ -66,7 +67,7 @@ class ProcessoTest {
             ))
             val call = create(cmd, baseUri)
 
-            Assert.assertEquals(call.response.status(), HttpStatusCode.Created)
+            Assert.assertEquals(HttpStatusCode.OK, call.response.status())
 
             // when
             val deleteCall = delete(DeletarProcesso(processo.id), baseUri)
@@ -92,10 +93,12 @@ class ProcessoTest {
 
 fun TestApplicationEngine.create(cmd : CriarProcesso, baseUri: String) = handleRequest(HttpMethod.Post, baseUri) {
     addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+    addHeader(HttpHeaders.Authorization, "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgxMzA1OTYsInVzZXJuYW1lIjoiSXNhYmVsYSJ9.rNwbCPCvxT6_VCWNzYVnlzh8ZYdc_zpfzBlw5LBww6Y")
     setBody(jacksonObjectMapper().writeValueAsBytes(cmd))
 }
 
 fun TestApplicationEngine.delete(cmd : DeletarProcesso, baseUri: String) = handleRequest(HttpMethod.Delete, baseUri) {
     addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+    addHeader(HttpHeaders.Authorization, "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDgxMzAyMjAsInVzZXJuYW1lIjoiSXNhYmVsYSJ9.HcjmYtNLnQuRQVNoQMpGl8YKTa5y9KX48sp5SXSeGR4")
     setBody(jacksonObjectMapper().writeValueAsBytes(cmd))
 }
